@@ -3,6 +3,7 @@ import keycode from 'keycode';
 import Formsy from 'formsy-react';
 import TextField from 'material-ui/TextField';
 import { setMuiComponentAndMaybeFocus, debounce } from './utils';
+import {red500} from "material-ui/styles/colors";
 
 const FormsyText = React.createClass({
 
@@ -116,16 +117,19 @@ const FormsyText = React.createClass({
       validationError, // eslint-disable-line no-unused-vars
       validationErrors, // eslint-disable-line no-unused-vars
       value, // eslint-disable-line no-unused-vars
+      floatingLabelText, 
       ...rest,
     } = this.props;
 
     const { isRequired, isPristine, isValid, isFormSubmitted } = this;
     const isRequiredError = isRequired() && !isPristine() && !isValid() && isFormSubmitted() && requiredError;
     const errorText = this.getErrorMessage() || isRequiredError;
+    const redAsterisk = 
 
     return (
       <TextField
         disabled={this.isFormDisabled()}
+        floatingLabelText={isRequired? (<span>{this.props.floatingLabelText} <span style={{color:red500}}>&nbsp;*</span></span>) : (this.props.floatingLabelText) }
         {...rest}
         errorText={errorText}
         onBlur={this.handleBlur}
