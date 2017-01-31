@@ -124,12 +124,12 @@ const FormsyText = React.createClass({
     const { isRequired, isPristine, isValid, isFormSubmitted } = this;
     const isRequiredError = isRequired() && !isPristine() && !isValid() && isFormSubmitted() && requiredError;
     const errorText = this.getErrorMessage() || isRequiredError;
-    const redAsterisk = 
+    const redAsterisk = <span style={{color:red500}}>&nbsp;*</span>
 
     return (
       <TextField
         disabled={this.isFormDisabled()}
-        floatingLabelText={isRequired? (<span>{this.props.floatingLabelText} <span style={{color:red500}}>&nbsp;*</span></span>) : (this.props.floatingLabelText) }
+        floatingLabelText={isRequired? (<span>{this.props.floatingLabelText}{redAsterisk}</span>) : (this.props.floatingLabelText) }
         {...rest}
         errorText={errorText}
         onBlur={this.handleBlur}
